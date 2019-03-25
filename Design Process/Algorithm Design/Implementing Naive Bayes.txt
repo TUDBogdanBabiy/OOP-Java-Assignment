@@ -5,20 +5,60 @@ This will be used to create the code for this algorithm.
  |Temperature | Aches | Sore Throat | Tonsilitis
 ------------------------------------------------
 1 | HOT       | YES   |    NO       |     YES
-2 | HOT       | YES   |    NO       |     YES
-3 | HOT       | YES   |    NO       |     YES
-4 | NORMAL       | YES   |    NO       |     YES
-5 | COOL       | YES   |    NO       |     YES
-6 | COOL       | YES   |    NO       |     YES
-7 | COOL       | YES   |    NO       |     YES
-8 | NORMAL       | YES   |    NO       |     YES
-9 | HOT       | YES   |    NO       |     YES
-10| HOT       | YES   |    NO       |     YES
-11| HOT       | YES   |    NO       |     YES
-12| HOT       | YES   |    NO       |     YES
-13| HOT       | YES   |    NO       |     YES
-14| HOT       | YES   |    NO       |     YES
-15| HOT       | YES   |    NO       |     YES
-16| HOT       | YES   |    NO       |     YES
-17| HOT       | YES   |    NO       |     YES
-18| HOT       | YES   |    NO       |     YES
+2 | HOT       | YES   |    YES      |     NO
+3 | HOT       | NO    |    NO       |     NO
+4 | NORMAL    | NO    |    YES      |     YES
+5 | COOL      | YES   |    YES      |     NO
+6 | COOL      | YES   |    NO       |     NO
+7 | COOL      | NO    |    NO       |     YES
+8 | NORMAL    | NO    |    YES      |     YES
+9 | COOL      | NO    |    NO       |     NO
+10| NORMAL    | YES   |    YES      |     YES
+11| NORMAL    | YES   |    YES      |     YES
+12| NORMAL    | NO    |    YES      |     YES
+13| HOT       | YES   |    NO       |     NO
+14| NORMAL    | YES   |    NO       |     NO
+15| HOT       | YES   |    YES      |     NO
+16| NORMAL    | NO    |    YES      |     YES
+17| COOL      | YES   |    NO       |     NO
+18| NORMAL    | YES   |    YES      |     YES
+-------------------------------------------------
+
+P(Tonsilitis|Y) = 9/18
+P(Tonsilitis|N) = 9/18
+
+--------------------------
+Sore Throat (ST)	 |
+--------------------------
+
+P(SoreThroat|Y) = 10/18 ||| P(ST + Tonsilitis) = 7/9 | P(ST + no Tonsilitis) = 1/3
+
+P(SoreThroat|N) = 8/18  ||| P(no ST + Tonsilitis) = 2/9 | P(no ST + no Tonsilitis) = 6/9 
+
+----------------------------
+Aches	(A)		   |
+----------------------------
+
+P(A) = 11/18 ||| P(A + Tons) = 4/9 | P(A + no Tons) = 5/9
+
+P(no A) = 7/18 ||| P(no A + Tons) = 7/9 | P(no A + no Tons) = 2/9
+
+--------------------------------------------
+Temperature, hot, normal, cool (H,N,C)	   |
+--------------------------------------------
+
+P(H) = 5/18 ||| P(H+Tons) = 1/9 | P(H+no Tons) = 8/9
+P(N) = 4/9  ||| P(N+Tons) = 7/9 | P(N+ no Tons) = 2/9
+P(C) = 5/18 ||| P(C+Tons) = 1/9 | P(C+ no Tons) = 8/9
+
+*****************************************************************************************
+Assume a new patient has X= { Temp:hot |Aches:yes |Sore Throat:no }
+
+P(Tons given X)  = 1/9 * 4/9 * 2/9 * 9/18   = 0.005487
+P(no Tons given X) = 8/9 * 5/9 * 6/9 * 9/18 = 0.164609
+					    + -----------
+					      0.170096
+
+P(Tons given X)    = 0.005487/0.170096 = 3.23%
+P(no Tons given X) = 0.164609/0.170096 = 96.77%  // Therefore that patient has a 96.77% chance to have tonsilitis
+***************************************************************************************** 
