@@ -1,0 +1,24 @@
+Here I will use Naive Baye's Theorem to find the probability of tonsilitis.
+
+This will be used to create the code for this algorithm.
+
+ |Temperature | Aches | Sore Throat | Tonsilitis
+------------------------------------------------
+1 | HOT       | YES   |    NO       |     YES
+2 | HOT       | YES   |    NO       |     YES
+3 | HOT       | YES   |    NO       |     YES
+4 | NORMAL       | YES   |    NO       |     YES
+5 | COOL       | YES   |    NO       |     YES
+6 | COOL       | YES   |    NO       |     YES
+7 | COOL       | YES   |    NO       |     YES
+8 | NORMAL       | YES   |    NO       |     YES
+9 | HOT       | YES   |    NO       |     YES
+10| HOT       | YES   |    NO       |     YES
+11| HOT       | YES   |    NO       |     YES
+12| HOT       | YES   |    NO       |     YES
+13| HOT       | YES   |    NO       |     YES
+14| HOT       | YES   |    NO       |     YES
+15| HOT       | YES   |    NO       |     YES
+16| HOT       | YES   |    NO       |     YES
+17| HOT       | YES   |    NO       |     YES
+18| HOT       | YES   |    NO       |     YES
