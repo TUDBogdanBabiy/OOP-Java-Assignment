@@ -9,6 +9,10 @@ public class Main {
 		m1.dispose();
 		
 		PatientMenu pm = new PatientMenu("Patient Menu");
+		
+		pm.dispose();
+		
+		DoctorMenu dm  = new DoctorMenu();
 	}
 
 }
