@@ -15,18 +15,29 @@ import javax.swing.JTextField;
 
 public class PatientMenu extends JFrame implements ActionListener{
 	
-	//Attributes
-	private JLabel nameLabel;
-	private JButton submit;
-	private JTextField nameInput;
+	//Variables
+		private String[] tempOptions = {"hot","normal","cool"};
+		private String[] achesOptions  = {"yes","no"};
+		private String[] throatOptions = {"yes","no"};
 	
-	private String[] tempOptions = {"hot","normal","cool"};
-	private String[] achesOptions  = {"yes","no"};
-	private String[] throatOptions = {"yes","no"};
 	
-	private JComboBox temp = new JComboBox(tempOptions);
-	private JComboBox aches = new JComboBox(achesOptions);
-	private JComboBox sorethroat = new JComboBox(throatOptions);
+	//Labels
+		private JLabel nameLabel;
+		private JLabel tempLabel;
+		private JLabel achesLabel;
+		private JLabel throatLabel;
+	
+	//Buttons
+		private JButton submit;
+	
+	
+	//Text Fields
+		private JTextField nameInput;
+	
+	//Combo Boxes
+		private JComboBox temp = new JComboBox(tempOptions);
+		private JComboBox aches = new JComboBox(achesOptions);
+		private JComboBox sorethroat = new JComboBox(throatOptions);
 	
 	// create a section of screen (panel) that will hold some GUI components 
 	   JPanel PanelN = new JPanel();
@@ -41,13 +52,46 @@ public class PatientMenu extends JFrame implements ActionListener{
 		// sets the screen layout  - in this case, border layout
 		   setLayout(new BorderLayout());
 		   
-		   // create a label
-		   nameLabel  = new JLabel("Enter your name");
+		// create a label
+		   nameLabel   = new JLabel("Enter your name");
+		   tempLabel   = new JLabel("Choose your temperature");
+		   achesLabel  = new JLabel("Do you have aches?");
+		   throatLabel = new JLabel("Is your throat sore?");
 		   
-		   // add the labels 
-		   // Remember that once you add to the panel you cant resize
+		//Instantiate new buttons
+		   
+		   submit = new JButton("Submit Symptoms");
+		   submit.setPreferredSize(new Dimension(250, 40));
+		   submit.addActionListener(this);
+		
+		//Instantiate text fields
+		   nameInput = new JTextField();
+		   nameInput.setPreferredSize(new Dimension(120, 30));
+		   nameInput.addActionListener(this);
+		   nameInput.setToolTipText("Enter your name");
+		
+		//Instantiate combo boxes
+		   temp = new JComboBox(tempOptions);
+		   aches = new JComboBox(achesOptions);
+		   sorethroat = new JComboBox(throatOptions);
+		   
+		// set the location of the screen  
+		   setLocation(500,100);
+
+		 // Define the size of the frame  
+		   setSize(250,300);
+		   
+		// add everything to the panels
+		// Remember that once you add to the panel you cant resize
 		   PanelN.add(nameLabel); 
-		   
+		   PanelN.add(nameInput);
+		   PanelC.add(tempLabel);
+		   PanelC.add(temp);
+		   PanelC.add(achesLabel);
+		   PanelC.add(aches);
+		   PanelC.add(throatLabel);
+		   PanelC.add(sorethroat);
+		   PanelS.add(submit);
 		   
 		// add the panel to the screen ,set background colour and panel dimensions
 		   add(PanelN, BorderLayout.NORTH);
@@ -57,28 +101,7 @@ public class PatientMenu extends JFrame implements ActionListener{
 		   PanelS.setBackground(Color.gray);
 		   add(PanelC, BorderLayout.CENTER);
 		   PanelC.setBackground(Color.lightGray);
-
-			// set the location of the screen  
-		   setLocation(500,100);
-
-		   // Define the size of the frame  
-		   setSize(250,300);
-		   
-		 //Instantiate new buttons
-		   
-		   submit = new JButton("Submit Symptoms");
-		   submit.setPreferredSize(new Dimension(100, 40));
-		   submit.addActionListener(this);
-		   
-		 //Add Buttons to the panels and add listener  
-		   PanelS.add(submit);
-		   
-		   nameInput = new JTextField();
-		   nameInput.setPreferredSize(new Dimension(120, 30));
-		   PanelN.add(nameInput,BorderLayout.CENTER);
-		   nameInput.addActionListener(this);
-		   nameInput.setToolTipText("Enter your name");
-		   
+	   
 		// make the screen appear - without this, it doesn't!  
 		   
 		   setVisible(true);
