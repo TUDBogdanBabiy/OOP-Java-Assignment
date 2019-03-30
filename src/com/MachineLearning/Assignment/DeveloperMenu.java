@@ -10,85 +10,49 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-public class DoctorMenu extends JFrame implements ActionListener{
-
-	//Variables
-		
-
+public class DeveloperMenu extends JFrame implements ActionListener{
 
 	//Labels
-		private JLabel fileLabel;
-		
+		private JLabel accuracy;
+			
 
 	//Buttons
-		private JButton addPatient;
-		private JButton showAll;
-		private JButton deleteAll;
-
-
-	//Text Fields
-		private JTextField fileName;
-		private JTextArea display;
-	
+		private JButton showAccuracy;
+		
 	// create a section of screen (panel) that will hold some GUI components 
 	   JPanel PanelN = new JPanel();
 	   JPanel PanelS = new JPanel();
-	   JPanel PanelC = new JPanel();
-	   		
+	   JPanel PanelC = new JPanel();	
+	public DeveloperMenu() {
 		
-	public DoctorMenu() {
-		super("Doctor Menu");
+
+		super("Developer Menu");
 		
 		// sets the screen layout  - in this case, border layout
 		   setLayout(new BorderLayout());
 		   
 		// create a label
-		   fileLabel   = new JLabel("Enter file name");
+		   accuracy   = new JLabel("Click Button To Test Model Accuracy");
+		   accuracy.setPreferredSize(new Dimension(210, 40));
 		   
 	    //Instantiate new buttons
 		   
-		   addPatient = new JButton("Add Patients");
-		   addPatient.setPreferredSize(new Dimension(250, 40));
-		   addPatient.addActionListener(this);
+		   showAccuracy = new JButton("Test Model Accuracy");
+		   showAccuracy.setPreferredSize(new Dimension(250, 40));
+		   showAccuracy.addActionListener(this);
 		   
-		   showAll = new JButton("Show All Patients");
-		   showAll.setPreferredSize(new Dimension(250, 40));
-		   showAll.addActionListener(this);
-		   
-		   deleteAll = new JButton("Clear All Patients");
-		   deleteAll.setPreferredSize(new Dimension(250, 40));
-		   deleteAll.addActionListener(this);
-		 
-	    //Instantiate text fields
-		   fileName = new JTextField();
-		   fileName.setPreferredSize(new Dimension(120, 30));
-		   fileName.addActionListener(this);
-		   fileName.setToolTipText("Patient file name");
-		   
-		   display = new JTextArea();
-		   display.setPreferredSize(new Dimension(300,300));
-		   
-		   
-	   
 		// set the location of the screen  
 		   setLocation(500,100);
 
 		 // Define the size of the frame  
-		   setSize(280,450);
+		   setSize(280,200);
 		   
 		// add everything to the panels
 		// Remember that once you add to the panel you cant resize
-		   PanelN.add(fileLabel); 
-		   PanelN.add(fileName);
-		   PanelC.add(showAll);
-		   PanelC.add(deleteAll);
-		   PanelC.add(display);
-		   PanelS.add(addPatient);
-
-
+		   PanelN.add(accuracy); 
+		   PanelS.add(showAccuracy);	
+		   
 		// add the panel to the screen ,set background colour and panel dimensions
 		   add(PanelN, BorderLayout.NORTH);
 		   PanelN.setBackground(Color.lightGray);
@@ -102,8 +66,7 @@ public class DoctorMenu extends JFrame implements ActionListener{
 		   
 	    // make the screen appear - without this, it doesn't!  
 		   
-		   setVisible(true);		   
-		   
+		   setVisible(true);		   		   
 	}
 
 	@Override

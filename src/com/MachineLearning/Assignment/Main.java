@@ -13,6 +13,10 @@ public class Main {
 		pm.dispose();
 		
 		DoctorMenu dm  = new DoctorMenu();
+		
+		dm.dispose();
+		
+		DeveloperMenu devm = new DeveloperMenu();
 	}
 
 }
