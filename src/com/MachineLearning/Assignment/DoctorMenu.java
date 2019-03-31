@@ -77,7 +77,8 @@ public class DoctorMenu extends JFrame implements ActionListener{
 		   setLocation(500,100);
 
 		 // Define the size of the frame  
-		   setSize(280,450);
+		   setSize(280,350);
+		   this.setMinimumSize(new Dimension(280,350));
 		   
 		// add everything to the panels
 		// Remember that once you add to the panel you cant resize

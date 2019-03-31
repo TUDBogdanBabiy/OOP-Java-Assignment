@@ -37,7 +37,8 @@ public class MainMenu extends JFrame implements ActionListener {
 		   setLocation(500,100);
 
 		   // Define the size of the frame  
-		   setSize(200,300);
+		   setSize(280,350);
+		   this.setMinimumSize(new Dimension(280,350));
 		   
 		 //Instantiate new buttons
 		   

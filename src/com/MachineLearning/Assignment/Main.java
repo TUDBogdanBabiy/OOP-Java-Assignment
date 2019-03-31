@@ -6,15 +6,15 @@ public class Main {
 		
 		MainMenu m1 = new MainMenu("Main Menu");
 		
-		m1.dispose();
+		//m1.dispose();
 		
 		PatientMenu pm = new PatientMenu("Patient Menu");
 		
-		pm.dispose();
+		//pm.dispose();
 		
 		DoctorMenu dm  = new DoctorMenu();
 		
-		dm.dispose();
+		//dm.dispose();
 		
 		DeveloperMenu devm = new DeveloperMenu();
 	}
