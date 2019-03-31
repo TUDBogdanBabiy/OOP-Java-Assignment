@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -121,6 +122,10 @@ public class PatientMenu extends JFrame implements ActionListener{
 			
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
+		}
+		else if(e.getSource() == submit) {
+			Patient newPat = new Patient(nameInput.getText(),temp.getEditor().getItem().toString(),aches.getEditor().getItem().toString(),sorethroat.getEditor().getItem().toString());
+			JOptionPane.showMessageDialog(this,"You are now saved as: " + newPat);
 		}
 		
 	}
