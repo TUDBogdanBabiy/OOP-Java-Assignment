@@ -65,7 +65,23 @@ public class MainMenu extends JFrame implements ActionListener {
 
 	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		//This will allow to switch between menus
+		if(e.getSource() == patient) {
+			
+			PatientMenu pm = new PatientMenu("Patient Menu");
+			this.dispose();
+		}
+		else if(e.getSource()== doctor) {
+			
+			DoctorMenu dm  = new DoctorMenu();
+			this.dispose();
+		}
+		else if(e.getSource() == developer) {
+			
+			DeveloperMenu devm = new DeveloperMenu();
+			this.dispose();
+		}
 		
 	}
 

@@ -19,6 +19,7 @@ public class DeveloperMenu extends JFrame implements ActionListener{
 
 	//Buttons
 		private JButton showAccuracy;
+		private JButton goHome; 
 		
 	// create a section of screen (panel) that will hold some GUI components 
 	   JPanel PanelN = new JPanel();
@@ -38,9 +39,13 @@ public class DeveloperMenu extends JFrame implements ActionListener{
 		   
 	    //Instantiate new buttons
 		   
-		   showAccuracy = new JButton("Test Model Accuracy");
-		   showAccuracy.setPreferredSize(new Dimension(250, 40));
+		   showAccuracy = new JButton("Test Model");
+		   showAccuracy.setPreferredSize(new Dimension(125, 40));
 		   showAccuracy.addActionListener(this);
+		   
+		   goHome = new JButton("Home");
+		   goHome.setPreferredSize(new Dimension(125, 40));
+		   goHome.addActionListener(this);
 		   
 		// set the location of the screen  
 		   setLocation(500,100);
@@ -52,7 +57,8 @@ public class DeveloperMenu extends JFrame implements ActionListener{
 		// add everything to the panels
 		// Remember that once you add to the panel you cant resize
 		   PanelN.add(accuracy); 
-		   PanelS.add(showAccuracy);	
+		   PanelS.add(showAccuracy);
+		   PanelS.add(goHome);
 		   
 		// add the panel to the screen ,set background colour and panel dimensions
 		   add(PanelN, BorderLayout.NORTH);
@@ -72,7 +78,12 @@ public class DeveloperMenu extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == goHome) {
+			
+			MainMenu m1 = new MainMenu("Main Menu");
+			this.dispose();
+		}		
 		
 	}
 

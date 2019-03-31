@@ -29,6 +29,7 @@ public class PatientMenu extends JFrame implements ActionListener{
 	
 	//Buttons
 		private JButton submit;
+		private JButton goHome; 
 	
 	
 	//Text Fields
@@ -60,9 +61,13 @@ public class PatientMenu extends JFrame implements ActionListener{
 		   
 		//Instantiate new buttons
 		   
-		   submit = new JButton("Submit Symptoms");
-		   submit.setPreferredSize(new Dimension(250, 40));
+		   submit = new JButton("Submit");
+		   submit.setPreferredSize(new Dimension(125, 40));
 		   submit.addActionListener(this);
+		   
+		   goHome = new JButton("Home");
+		   goHome.setPreferredSize(new Dimension(125, 40));
+		   goHome.addActionListener(this);
 		
 		//Instantiate text fields
 		   nameInput = new JTextField();
@@ -93,6 +98,7 @@ public class PatientMenu extends JFrame implements ActionListener{
 		   PanelC.add(throatLabel);
 		   PanelC.add(sorethroat);
 		   PanelS.add(submit);
+		   PanelS.add(goHome);
 		   
 		// add the panel to the screen ,set background colour and panel dimensions
 		   add(PanelN, BorderLayout.NORTH);
@@ -110,7 +116,12 @@ public class PatientMenu extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == goHome) {
+			
+			MainMenu m1 = new MainMenu("Main Menu");
+			this.dispose();
+		}
 		
 	}
 

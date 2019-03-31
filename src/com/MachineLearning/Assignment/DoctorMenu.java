@@ -27,6 +27,7 @@ public class DoctorMenu extends JFrame implements ActionListener{
 		private JButton addPatient;
 		private JButton showAll;
 		private JButton deleteAll;
+		private JButton goHome; 
 
 
 	//Text Fields
@@ -51,7 +52,7 @@ public class DoctorMenu extends JFrame implements ActionListener{
 	    //Instantiate new buttons
 		   
 		   addPatient = new JButton("Add Patients");
-		   addPatient.setPreferredSize(new Dimension(250, 40));
+		   addPatient.setPreferredSize(new Dimension(125, 40));
 		   addPatient.addActionListener(this);
 		   
 		   showAll = new JButton("Show All Patients");
@@ -61,6 +62,10 @@ public class DoctorMenu extends JFrame implements ActionListener{
 		   deleteAll = new JButton("Clear All Patients");
 		   deleteAll.setPreferredSize(new Dimension(250, 40));
 		   deleteAll.addActionListener(this);
+		   
+		   goHome = new JButton("Home");
+		   goHome.setPreferredSize(new Dimension(125, 40));
+		   goHome.addActionListener(this);
 		 
 	    //Instantiate text fields
 		   fileName = new JTextField();
@@ -88,6 +93,7 @@ public class DoctorMenu extends JFrame implements ActionListener{
 		   PanelC.add(deleteAll);
 		   PanelC.add(display);
 		   PanelS.add(addPatient);
+		   PanelS.add(goHome);
 
 
 		// add the panel to the screen ,set background colour and panel dimensions
@@ -109,7 +115,12 @@ public class DoctorMenu extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == goHome) {
+			
+			MainMenu m1 = new MainMenu("Main Menu");
+			this.dispose();
+		}
 		
 	}
 
