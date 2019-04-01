@@ -126,6 +126,7 @@ public class PatientMenu extends JFrame implements ActionListener{
 		else if(e.getSource() == submit) {
 			Patient newPat = new Patient(nameInput.getText(),temp.getEditor().getItem().toString(),aches.getEditor().getItem().toString(),sorethroat.getEditor().getItem().toString());
 			JOptionPane.showMessageDialog(this,"You are now saved as: " + newPat);
+			Model m1 =new Model();
 		}
 		
 	}
