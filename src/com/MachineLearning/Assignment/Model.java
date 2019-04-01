@@ -1,9 +1,15 @@
 package com.MachineLearning.Assignment;
 
-public class Model {
+import java.io.File;
+import java.util.ArrayList;
 
+public class Model {
+	
+	File traintData;
+	private static ArrayList <Patient> trData = new ArrayList ();
+	
 	public Model() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }

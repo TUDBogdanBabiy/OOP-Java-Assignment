@@ -3,7 +3,7 @@ package com.MachineLearning.Assignment;
 public class Patient {
 	
 	//Attributes
-	private String pName = "Not Defined";
+	private String pName;
 	private int pID;
 	private static int currentNum = 0;
 	private String temp;
@@ -19,6 +19,11 @@ public class Patient {
 		this.throat = throat;
 		this.pID = currentNum;
 		
+	}
+	
+	public double checkPatient() {
+		double result = 0;
+		return result;
 	}
 
 	@Override
