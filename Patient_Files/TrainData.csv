@@ -1,19 +1,19 @@
-﻿ID,TEMP,ACHES,THROAT,TONSILITIS
-1,hot,yes,no,yes
-2,hot,yes ,yes,no
-3,hot,no,no,no
-4,normal,no,yes,yes
-5,cool,yes,yes,no
-6,cool,yes,no,no
-7,cool,no,no,yes
-8,normal,no,yes,yes
-9,cool,no,no,no
-10,normal,yes,yes,yes
-11,normal,yes,yes,yes
-12,normal,no,yes,yes
-13,hot,yes,no,no
-14,normal,yes,no,no
-15,hot,yes,yes,no
-16,normal,no,yes,yes
-17,cool,yes,no,no
-18,normal,yes,yes,yes
+ID	TEMP	ACHES	THROAT	TONSILITIS
+1	hot	yes	no	yes
+2	hot	yes 	yes	no
+3	hot	no	no	no
+4	normal	no	yes	yes
+5	cool	yes	yes	no
+6	cool	yes	no	no
+7	cool	no	no	yes
+8	normal	no	yes	yes
+9	cool	no	no	no
+10	normal	yes	yes	yes
+11	normal	yes	yes	yes
+12	normal	no	yes	yes
+13	hot	yes	no	no
+14	normal	yes	no	no
+15	hot	yes	yes	no
+16	normal	no	yes	yes
+17	cool	yes	no	no
+18	normal	yes	yes	yes
