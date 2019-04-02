@@ -1,37 +1,34 @@
 package com.MachineLearning.Assignment;
 
 public class Patient {
-	
-	//Attributes
+
+	// Attributes
 	private String pName;
 	private int pID;
 	private static int currentNum = 0;
 	private String temp;
 	private String aches;
 	private String throat;
-	
-	public Patient(String pName,String temp,String aches,String throat) {
-		
+
+	public Patient(String pName, String temp, String aches, String throat) {
+
 		currentNum++;
 		this.pName = pName;
 		this.temp = temp;
 		this.aches = aches;
 		this.throat = throat;
 		this.pID = currentNum;
-		
+
 	}
-	
+
 	public double checkPatient() {
-		double result = 0;
-		return result;
+		Model m1 = new Model();
+		return  m1.calcProbability(temp,aches,throat);
 	}
 
 	@Override
 	public String toString() {
-		return "\nPatient: " + pID + "\n"
-				+ "Name: " + pName + "\n"
-				+ "temp: " + temp + "\n"
-				+ "aches: " + aches + "\n"
+		return "\nPatient: " + pID + "\n" + "Name: " + pName + "\n" + "temp: " + temp + "\n" + "aches: " + aches + "\n"
 				+ "throat: " + throat;
 	}
 
@@ -82,7 +79,5 @@ public class Patient {
 	public void setThroat(String throat) {
 		this.throat = throat;
 	}
-	
-	
 
 }
