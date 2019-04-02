@@ -11,11 +11,11 @@ public class Model
 	
 	File trainData;
 	Scanner myReader;
-	Scanner myReader2;
-	String[] values = new String[5];
+	String[] values ;
 	String[][] values2; 
 	int lineCount= 0;
-	int lineCounter1 =0;
+	int cols;
+	int rows =0;
 	private static ArrayList <ArrayList<String>> lines = new ArrayList ();//2D array list
 	
 	public Model() 
@@ -24,19 +24,23 @@ public class Model
 		try 
 		{
 			myReader = new Scanner(trainData);
-			myReader2 = new Scanner(trainData);
 			
-			
-			
-			while(myReader2.hasNextLine())
+			//Scan the File to find amount of rows and columns
+			while(myReader.hasNextLine())
 			{
 				
-				String line = myReader2.nextLine();
+				String line = myReader.nextLine();
+				values = line.split(",");
 				
-				lineCounter1++;
+				rows++;
 			}
+			cols = values.length;
+			myReader.close();
 			
-			values2 = new String[lineCounter1][5];
+			//Reopen the scanner from the beginning
+			myReader = new Scanner(trainData);
+			
+			values2 = new String[rows][cols];
 			while(myReader.hasNextLine())
 			{
 				
@@ -46,7 +50,7 @@ public class Model
 				values = line.split(",");
 				
 				
-				for(int i=0;i< values.length;i++) {
+				for(int i=0;i< cols;i++) {
 					values2[lineCount][i] = values[i];
 				}
 				
