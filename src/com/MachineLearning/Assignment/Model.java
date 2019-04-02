@@ -91,13 +91,11 @@ public class Model {
 
 	}
 
-	public double calcProbability(String temp,String aches,String throat) {
-		
+	public double calcProbability(String temp, String aches, String throat) {
+
 		countinCol(4, "yes");
 		expandCols("yes");
 		expandCols("no");
-		
-		
 
 		return 0;
 	}
@@ -112,91 +110,83 @@ public class Model {
 
 		tonNo = tonYes - rows;
 	}
-	
 
+	public void expandCols(String value) {
 
-	public void expandCols( String value) {
-
-		
 		// Temperature
-		
-			for (int i = 0, col=1; i < rows; i++) {
 
-				if (values2[col][i].equals("hot") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						tempHtons++;
-					} else {
-						tempHnotons++;
-					}
-				}
+		for (int i = 0, col = 1; i < rows; i++) {
 
-				if (values2[col][i].equals("cool") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						tempCtons++;
-					} else {
-						tempCnotons++;
-					}
-				}
-
-				if (values2[col][i].equals("normal") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						tempNtons++;
-					} else {
-						tempNnotons++;
-					}
+			if (values2[col][i].equals("hot") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					tempHtons++;
+				} else {
+					tempHnotons++;
 				}
 			}
-			
+
+			if (values2[col][i].equals("cool") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					tempCtons++;
+				} else {
+					tempCnotons++;
+				}
+			}
+
+			if (values2[col][i].equals("normal") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					tempNtons++;
+				} else {
+					tempNnotons++;
+				}
+			}
+		}
+
 		// Aches
-		
-			for (int i = 0,col =2; i < rows; i++) {
 
-				if (values2[col][i].equals("yes") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						achesYtons++;
-					} else {
-						achesYnotons++;
-					}
-				}
-				
-				if (values2[col][i].equals("no") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						achesNtons++;
-					} else {
-						achesNnotons++;
-					}
-				}
-				
+		for (int i = 0, col = 2; i < rows; i++) {
 
+			if (values2[col][i].equals("yes") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					achesYtons++;
+				} else {
+					achesYnotons++;
+				}
 			}
 
-			
-		// Sore Throat
-		
-			for (int i = 0,col=3; i < rows; i++) {
-
-				if (values2[col][i].equals("yes") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						throatYtons++;
-					} else {
-						throatYnotons++;
-					}
+			if (values2[col][i].equals("no") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					achesNtons++;
+				} else {
+					achesNnotons++;
 				}
-				
-				if (values2[col][i].equals("no") && values2[4][i].equals(value)) {
-					if (value.equals("yes")) {
-						throatNtons++;
-					} else {
-						throatNnotons++;
-					}
-				}
-
 			}
-			
 
 		}
 
-	
+		// Sore Throat
+
+		for (int i = 0, col = 3; i < rows; i++) {
+
+			if (values2[col][i].equals("yes") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					throatYtons++;
+				} else {
+					throatYnotons++;
+				}
+			}
+
+			if (values2[col][i].equals("no") && values2[4][i].equals(value)) {
+				if (value.equals("yes")) {
+					throatNtons++;
+				} else {
+					throatNnotons++;
+				}
+			}
+
+		}
+
+	}
 
 	public void appendFile(String filename) {
 
