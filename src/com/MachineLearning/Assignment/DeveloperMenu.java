@@ -20,7 +20,7 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 	private JButton showAccuracy;
 	private JButton goHome;
 
-	// create a section of screen (panel) that will hold some GUI components
+	// create a section of screen/7 (panel) that will hold some GUI components
 	JPanel PanelN = new JPanel();
 	JPanel PanelS = new JPanel();
 	JPanel PanelC = new JPanel();

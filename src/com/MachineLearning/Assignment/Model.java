@@ -4,37 +4,29 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Model {
 
-	File trainData;
-	Scanner myReader;
-	String[] values;
-	String[][] values2;
 	int lineCount = 0;
 	int cols;
 	int rows = 0;
+	int valueCounter = 0;
+	int probArrayCounter = 0;
+
+	File trainData;
+	Scanner myReader;
+	static String[] values;
+	static String[][] values2; // rows[] colums[]
+
+	double[] yesProbabilities;
+	double[]noProbabilities;
 
 	int tonYes = 0;
 	int tonNo = 0;
 
-	double tempCtons;
-	double tempNtons;
-	double tempHtons;
-	double achesYtons;
-	double achesNtons;
-	double throatYtons;
-	double throatNtons;
 	double pTons;
-
-	double tempCnotons;
-	double tempNnotons;
-	double tempHnotons;
-	double achesYnotons;
-	double achesNnotons;
-	double throatYnotons;
-	double throatNnotons;
 	double pNoTons;
 
 	public Model() {
@@ -57,20 +49,32 @@ public class Model {
 			myReader = new Scanner(trainData);
 
 			values2 = new String[rows][cols];
+			yesProbabilities = new double[cols];
+			noProbabilities = new double[cols];
+
 			while (myReader.hasNextLine()) {
 
 				String line = myReader.nextLine();
 
 				// Split the line and save into array
 				values = line.split(",");
+				
+				
 
 				// Fill the 2D array row by row
 				for (int i = 0; i < cols; i++) {
 					values2[lineCount][i] = values[i];
+
+					// Count yes
+					if (i == 4 && values[i].equals("yes")) {
+						tonYes++;
+					}
 				}
 
 				lineCount++;
 			}
+
+			tonNo = tonYes - rows;
 
 		} catch (IOException e) {
 
@@ -79,113 +83,106 @@ public class Model {
 		} // End try catch
 
 		// Prints 2D array
+
 		for (int i = 0; i < lineCount; i++) {
 			System.out.print("\n-------------------------------------\n");
 
 			for (int j = 0; j < values.length; j++) {
-				System.out.print(values2[i][j]);
+				System.out.print(values2[i][j]+" | ");
 
 			}
 
 		}
-
+		
+		//This should print the last element of the last array
+		System.out.print("\n\nyes = "+values2[18][4]); //This will print the 18th row
+		
+		System.out.print("\n\nSize of values = "+values.length); //This will print the 18th row
+		
+		
 	}
 
 	public double calcProbability(String temp, String aches, String throat) {
 
-		countinCol(4, "yes");
-		expandCols("yes");
-		expandCols("no");
+		
+		
+		countCol("temp",temp,aches,throat);
+		countCol("aches",temp,aches,throat);
+		countCol("throat",temp,aches,throat);
 
-		return 0;
+		
+		double pTons = multiply(yesProbabilities);
+		double pNoTons = multiply(noProbabilities);
+
+		
+		pTons = pTons/(pTons+pNoTons);
+		
+		System.out.println("\n\nChance of Tonsilitis: "+pTons+" %");
+		return pTons;
+
 	}
 
-	public void countinCol(int col, String value) {
-		for (int i = 0; i < rows; i++) {
-			if (values2[col][i].equals(value)) {
-				tonYes++;
-
-			}
+	public double multiply(double[] list) {
+		double total = list[0];
+		
+		
+		System.out.println("\n:"+list.length+":");
+		
+				
+		for (int i = 0; i < 3; i++) {
+			
+			total = total * list[i+1] ;
 		}
-
-		tonNo = tonYes - rows;
+		
+		System.out.println("\n:"+total+":");
+		return total;
 	}
 
-	public void expandCols(String value) {
+	public void countCol(String colName, String temp, String aches, String throat) {
 
-		// Temperature
-
-		for (int i = 0, col = 1; i < rows; i++) {
-
-			if (values2[col][i].equals("hot") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					tempHtons++;
-				} else {
-					tempHnotons++;
+		
+		if(colName.equals("temp")) {
+			
+			for (int i = 0; i < lineCount; i++) {
+				if (values2[i][1].equals(temp) && values2[i][4].equals("yes")) {
+					valueCounter++;
 				}
 			}
-
-			if (values2[col][i].equals("cool") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					tempCtons++;
-				} else {
-					tempCnotons++;
-				}
-			}
-
-			if (values2[col][i].equals("normal") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					tempNtons++;
-				} else {
-					tempNnotons++;
-				}
-			}
+			
+			yesProbabilities[probArrayCounter] = ((double) (valueCounter / tonYes));
+			valueCounter = tonYes - valueCounter;
+			noProbabilities[probArrayCounter] = ((double) (valueCounter / tonYes));
+			probArrayCounter++;
 		}
-
-		// Aches
-
-		for (int i = 0, col = 2; i < rows; i++) {
-
-			if (values2[col][i].equals("yes") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					achesYtons++;
-				} else {
-					achesYnotons++;
+		else if(colName.equals("aches")) {
+			for (int i = 0; i < lineCount; i++) {
+				if (values2[i][2].equals(aches) && values2[i][4].equals("yes")) {
+					valueCounter++;
 				}
 			}
-
-			if (values2[col][i].equals("no") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					achesNtons++;
-				} else {
-					achesNnotons++;
-				}
-			}
-
+			
+			yesProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			valueCounter = tonYes - valueCounter;
+			noProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			probArrayCounter++;
 		}
-
-		// Sore Throat
-
-		for (int i = 0, col = 3; i < rows; i++) {
-
-			if (values2[col][i].equals("yes") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					throatYtons++;
-				} else {
-					throatYnotons++;
+		else if(colName.equals("throat")) {
+			for (int i = 0; i < lineCount; i++) {
+				if (values2[i][3].equals(throat) && values2[i][4].equals("yes")) {
+					valueCounter++;
 				}
-			}
 
-			if (values2[col][i].equals("no") && values2[4][i].equals(value)) {
-				if (value.equals("yes")) {
-					throatNtons++;
-				} else {
-					throatNnotons++;
-				}
 			}
-
+			
+			yesProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			valueCounter = tonYes - valueCounter;
+			noProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			probArrayCounter++;
 		}
+		
 
+		yesProbabilities[probArrayCounter] =((double) tonYes / lineCount);
+		noProbabilities[probArrayCounter] =((double) tonNo / lineCount);
 	}
 
 	public void appendFile(String filename) {
