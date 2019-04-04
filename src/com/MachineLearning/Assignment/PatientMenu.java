@@ -124,7 +124,7 @@ public class PatientMenu extends JFrame implements ActionListener {
 					aches.getEditor().getItem().toString(), sorethroat.getEditor().getItem().toString());
 			//JOptionPane.showMessageDialog(this, "You are now saved as: " + newPat);
 			
-			JOptionPane.showMessageDialog(this, "You have a : " + newPat.checkPatient() + " Chance to have Tonsilitis");
+			JOptionPane.showMessageDialog(this, "You have a : " + newPat.checkPatient() * 100 + "%  Chance to have Tonsilitis");
 			
 			
 		}

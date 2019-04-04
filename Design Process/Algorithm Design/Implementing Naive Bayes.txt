@@ -55,10 +55,10 @@ P(C) = 5/18 ||| P(C+Tons) = 1/9 | P(C+ no Tons) = 8/9
 Assume a new patient has X= { Temp:hot |Aches:yes |Sore Throat:no }
 
 P(Tons given X)  = 1/9 * 4/9 * 2/9 * 9/18   = 0.005487
-P(no Tons given X) = 8/9 * 5/9 * 6/9 * 9/18 = 0.164609
+P(no Tons given X) = 4/9 * 7/9 * 6/9 * 9/18 = 0.115226
 					    + -----------
-					      0.170096
+					      0.120713
 
-P(Tons given X)    = 0.005487/0.170096 = 3.23%
-P(no Tons given X) = 0.164609/0.170096 = 96.77%  // Therefore that patient has a 96.77% chance to have tonsilitis
+P(Tons given X)    = 0.005487/0.120713 = 4.545%
+P(no Tons given X) = 0.115226/0.120713 = 95.455%  // Therefore that patient has a 4.545% chance to have tonsilitis
 ***************************************************************************************** 
