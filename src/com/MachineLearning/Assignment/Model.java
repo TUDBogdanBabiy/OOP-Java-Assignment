@@ -12,7 +12,7 @@ public class Model {
 	int lineCount = 0;
 	int cols;
 	int rows = 0;
-	int valueCounter = 0;
+	double valueCounter = 0;
 	int probArrayCounter = 0;
 
 	File trainData;
@@ -23,8 +23,8 @@ public class Model {
 	double[] yesProbabilities;
 	double[]noProbabilities;
 
-	int tonYes = 0;
-	int tonNo = 0;
+	double tonYes = 0;
+	double tonNo = 0;
 
 	double pTons;
 	double pNoTons;
@@ -113,6 +113,9 @@ public class Model {
 		
 		double pTons = multiply(yesProbabilities);
 		double pNoTons = multiply(noProbabilities);
+		
+		System.out.println("\n\npTons: "+pTons);
+		System.out.println("\n\npNoTons: "+pNoTons);
 
 		
 		pTons = pTons/(pTons+pNoTons);
@@ -125,12 +128,10 @@ public class Model {
 	public double multiply(double[] list) {
 		double total = list[0];
 		
-		
-		System.out.println("\n:"+list.length+":");
-		
 				
 		for (int i = 0; i < 3; i++) {
 			
+			System.out.println("\nElement:"+i+" is "+list[i]+" and will be multiplied by "+ list[i+1]);
 			total = total * list[i+1] ;
 		}
 		
@@ -146,38 +147,64 @@ public class Model {
 			for (int i = 0; i < lineCount; i++) {
 				if (values2[i][1].equals(temp) && values2[i][4].equals("yes")) {
 					valueCounter++;
+					System.out.println("\n"+values2[i][1]+":"+values2[i][4]);
 				}
 			}
+			System.out.println("\n\n"+colName+":"+valueCounter);
 			
-			yesProbabilities[probArrayCounter] = ((double) (valueCounter / tonYes));
+			yesProbabilities[probArrayCounter] = ( (valueCounter / tonYes));
+			
+			System.out.println("\nYes Count:"+tonYes);
+			System.out.println("Value Count:"+valueCounter);
+			System.out.println("Decimal:"+colName+":"+ (valueCounter / tonYes));
+			
 			valueCounter = tonYes - valueCounter;
-			noProbabilities[probArrayCounter] = ((double) (valueCounter / tonYes));
+			noProbabilities[probArrayCounter] = ( (valueCounter / tonYes));
 			probArrayCounter++;
+			valueCounter = 0;
+			
 		}
 		else if(colName.equals("aches")) {
 			for (int i = 0; i < lineCount; i++) {
 				if (values2[i][2].equals(aches) && values2[i][4].equals("yes")) {
 					valueCounter++;
+					System.out.println("\n"+values2[i][2]+":"+values2[i][4]);
+					
 				}
 			}
+			System.out.println("\n\n"+colName+":"+valueCounter);
 			
-			yesProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			yesProbabilities[probArrayCounter] =((valueCounter / tonYes));
+			
+			System.out.println("\nYes Count:"+tonYes);
+			System.out.println("Value Count:"+valueCounter);
+			System.out.println("Decimal:"+colName+":"+ (valueCounter / tonYes));
+			
 			valueCounter = tonYes - valueCounter;
-			noProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			noProbabilities[probArrayCounter] = (valueCounter / tonYes);
 			probArrayCounter++;
+			valueCounter = 0;
 		}
 		else if(colName.equals("throat")) {
 			for (int i = 0; i < lineCount; i++) {
 				if (values2[i][3].equals(throat) && values2[i][4].equals("yes")) {
 					valueCounter++;
+					System.out.println("\n"+values2[i][3]+":"+values2[i][4]);
 				}
 
 			}
+			System.out.println("\n\n"+colName+":"+valueCounter);
 			
-			yesProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			yesProbabilities[probArrayCounter] =( (valueCounter / tonYes));
+			
+			System.out.println("\nYes Count:"+tonYes);
+			System.out.println("Value Count:"+valueCounter);
+			System.out.println("Decimal:"+colName+":"+ (valueCounter / tonYes));
+			
 			valueCounter = tonYes - valueCounter;
-			noProbabilities[probArrayCounter] =((double) (valueCounter / tonYes));
+			noProbabilities[probArrayCounter] =( (valueCounter / tonYes));
 			probArrayCounter++;
+			valueCounter = 0;
 		}
 		
 
