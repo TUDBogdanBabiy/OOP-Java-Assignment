@@ -18,11 +18,12 @@ public class Model
 	int probArrayCounter = 0;
 
 	//File related attributes
-	File trainData;
+	File patientData;
 	Scanner myReader;
 	static String[] lineValues;    // Stores the split line values 
-	static String[][] fileVaues; // Stores the file values
-
+	static String[][] fileValues; // Stores the file values
+	
+	String[][]trainData;
 
 	double[] yesProbabilities;
 	double[]noProbabilities;
@@ -34,14 +35,15 @@ public class Model
 	// Final probability decimal values
 	double pTons;
 	double pNoTons;
+	
 //**************************************** THE CONSTRUCTOR **************************************************
 	public Model() 
 	{
-		trainData = new File("Patient_Files\\TrainData.csv");
+		patientData = new File("Patient_Files\\TrainData.csv");
 		
 		try 
 		{
-			myReader = new Scanner(trainData);
+			myReader = new Scanner(patientData);
 
 //-----------------------SCAN FILE FOR LINE AND COLUMN COUNT-------------------------------------------------------------------------------------------		
 
@@ -56,11 +58,12 @@ public class Model
 			cols = lineValues.length;
 
 			// Reopen the scanner from the beginning
-			myReader = new Scanner(trainData);
+			myReader = new Scanner(patientData);
 
 			// Initialises 2D array size here to make them dynamic
 			
-			fileVaues = new String[lineCount][cols];
+			fileValues = new String[lineCount][cols];
+			trainData = new String[ (int)(lineCount* 0.7)][cols];// train data will be 70% of the overall data set
 			yesProbabilities = new double[cols];
 			noProbabilities = new double[cols];
 			lineCount = 0;
@@ -77,7 +80,7 @@ public class Model
 				// Fill the 2D array row by row
 				for (int i = 0; i < cols; i++)
 				{
-					fileVaues[lineCount][i] = lineValues[i];
+					fileValues[lineCount][i] = lineValues[i];
 
 					// Count yes
 					if (i == 4 && lineValues[i].equals("yes")) 
@@ -106,9 +109,9 @@ public class Model
 		{
 			System.out.print("\n-------------------------------------\n");
 
-			for (int j = 0; j < lineValues.length; j++)
+			for (int j = 0; j < cols; j++)
 			{
-				System.out.print(fileVaues[i][j]+" | ");
+				System.out.print(fileValues[i][j]+" | ");
 
 			}
 
@@ -119,10 +122,11 @@ public class Model
 	
 	public double calcProbability(String temp, String aches, String throat)
 	{
+		probArrayCounter =0;
 		// Counts the probability of each column
-		countCol("temp",temp,aches,throat);
-		countCol("aches",temp,aches,throat);
-		countCol("throat",temp,aches,throat);
+		countCol("temp",temp,aches,throat,fileValues,lineCount,tonYes,tonNo);
+		countCol("aches",temp,aches,throat,fileValues,lineCount,tonYes,tonNo);
+		countCol("throat",temp,aches,throat,fileValues,lineCount,tonYes,tonNo);
 
 		// Multiplies the array of probabilities
 		
@@ -134,6 +138,33 @@ public class Model
 		System.out.println("\n\nChance of Tonsilitis: "+pTons*100+" %");
 		
 		return pTons;
+	}
+
+//---------------------------CALCULATE PROBABILITY FOR TEST-DATA  ---------------------------------------------------------------------------------------		
+// This method will  be used for the model self evaluation	
+	
+	public String calcProbability(String temp, String aches, String throat,String[][] trainData,int lines,double yesCount,double noCount)
+	{
+		probArrayCounter =0;
+		// Counts the probability of each column
+		countCol("temp",temp,aches,throat,trainData,lines,yesCount,noCount);
+		countCol("aches",temp,aches,throat,trainData,lines,yesCount,noCount);
+		countCol("throat",temp,aches,throat,trainData,lines,yesCount,noCount);
+
+		// Multiplies the array of probabilities
+		
+		pTons   = multiply(yesProbabilities);
+		pNoTons = multiply(noProbabilities);
+	
+		if(pTons > pNoTons)
+		{
+			return "yes";
+		}
+		else 
+		{
+			return "no";
+		}
+		
 	}
 //********************************* MULTIPLY ARRAY OF PROBABILITIES ***************************************************
 	
@@ -150,7 +181,7 @@ public class Model
 	}
 //*********************************** FIND COLUMN PROBABILITIES *****************************************************
 	
-	public void countCol(String colName, String temp, String aches, String throat) 
+	public void countCol(String colName, String temp, String aches, String throat,String[][] trainData,int lineCount,double tonYes,double tonNo) 
 	{
 //---------------------------EXPAND COLUMN TEMP---------------------------------------------------------------------------------------		
 		
@@ -159,7 +190,7 @@ public class Model
 			// Count probability of the value temp and yes
 			for (int i = 0; i < lineCount; i++)
 			{
-				if (fileVaues[i][1].equals(temp) && fileVaues[i][4].equals("yes")) 
+				if (trainData[i][1].equals(temp) && trainData[i][4].equals("yes")) 
 				{
 					valueYesCounter++;
 				}
@@ -168,7 +199,7 @@ public class Model
 			// Count probability of the value temp and no
 			for (int i = 0; i < lineCount; i++)
 			{
-				if (fileVaues[i][1].equals(temp) && fileVaues[i][4].equals("no"))
+				if (trainData[i][1].equals(temp) && trainData[i][4].equals("no"))
 				{
 					valueNoCounter++;
 				}
@@ -190,7 +221,7 @@ public class Model
 			// Count probability of the value aches and yes
 			for (int i = 0; i < lineCount; i++)
 			{
-				if (fileVaues[i][2].equals(aches) && fileVaues[i][4].equals("yes")) 
+				if (trainData[i][2].equals(aches) && trainData[i][4].equals("yes")) 
 				{
 					valueYesCounter++;
 					
@@ -200,7 +231,7 @@ public class Model
 			// Count probability of the value aches and no
 			for (int i = 0; i < lineCount; i++) 
 			{
-				if (fileVaues[i][2].equals(aches) && fileVaues[i][4].equals("no")) 
+				if (trainData[i][2].equals(aches) && trainData[i][4].equals("no")) 
 				{
 					valueNoCounter++;
 				}
@@ -221,7 +252,7 @@ public class Model
 			// Count probability of the value throat and yes
 			for (int i = 0; i < lineCount; i++) 
 			{
-				if (fileVaues[i][3].equals(throat) && fileVaues[i][4].equals("yes"))
+				if (trainData[i][3].equals(throat) && trainData[i][4].equals("yes"))
 				{
 					valueYesCounter++;
 				}
@@ -231,7 +262,7 @@ public class Model
 			// Count probability of the value throat and no
 			for (int i = 0; i < lineCount; i++)
 			{
-				if (fileVaues[i][3].equals(throat) && fileVaues[i][4].equals("no"))
+				if (trainData[i][3].equals(throat) && trainData[i][4].equals("no"))
 				{
 					valueNoCounter++;
 				}
@@ -257,4 +288,62 @@ public void appendFile(String filename)
 
 	}
 
+//************************************ TEST MODEL ACCURACY *****************************************************
+
+public double testModel()
+	{
+		double success =0;
+		double testAmount = 0;
+		double yesCount = 0;
+		double noCount = 0;
+		
+		loadTrainData();
+		
+		for (int i = 0; i < (int)(lineCount*0.7); i++) 
+		{
+			
+			if(trainData[i][4].equals("yes")) 
+			{
+				yesCount++;
+			}
+			
+
+		}
+		noCount = ((int)(lineCount*0.7)) - yesCount;
+		
+		for(int i = (int)(lineCount*0.7);i<lineCount;i++)
+		{
+			
+			if(fileValues[i][4].equals(calcProbability(fileValues[i][1],fileValues[i][2],fileValues[i][3],trainData,(int)(lineCount*0.7),yesCount,noCount)))
+			{
+				 success++;
+			}
+			testAmount++;
+		}
+		
+		
+		System.out.println("\nCorrect :"+ success+"\nTotal :"+ testAmount);
+	return ((success/testAmount) * 100);		
+
+	}
+
+//************************************ LOAD 70% OF FILE DATA INTO TRAIN DATA  *****************************************************
+
+
+private void loadTrainData()
+{
+	for (int i = 0; i < (int)(lineCount*0.7); i++) 
+	{
+		
+		for (int j = 0; j < cols; j++)
+		{
+			trainData[i][j] = fileValues[i][j];
+
+		}
+
+	}
+	
+	
+}
+//************************************ END OF CLASS MODEL *****************************************************
 }

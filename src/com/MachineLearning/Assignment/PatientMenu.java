@@ -120,6 +120,7 @@ public class PatientMenu extends JFrame implements ActionListener {
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
 		} else if (e.getSource() == submit) {
+			
 			Patient newPat = new Patient(nameInput.getText(), (String) temp.getSelectedItem(),
 					 (String) aches.getSelectedItem(), (String) sorethroat.getSelectedItem());
 			//JOptionPane.showMessageDialog(this, "You are now saved as: " + newPat);

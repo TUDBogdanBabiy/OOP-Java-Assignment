@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class DeveloperMenu extends JFrame implements ActionListener {
@@ -82,6 +83,10 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
+		}else if (e.getSource() == showAccuracy) {
+
+			Model m1 = new Model();
+			JOptionPane.showMessageDialog(this, "Model Accuracy is at: "+Math.round(m1.testModel())+"%");
 		}
 
 	}
