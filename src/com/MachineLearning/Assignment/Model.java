@@ -292,13 +292,18 @@ public void appendFile(String filename)
 
 public double testModel()
 	{
+		// Number of correct predictions and total amount of data being tested
 		double success =0;
 		double testAmount = 0;
+		
+		
 		double yesCount = 0;
 		double noCount = 0;
 		
+		// loads 70% of the file data into a new array
 		loadTrainData();
 		
+		// Counts the number of yeses in the new array
 		for (int i = 0; i < (int)(lineCount*0.7); i++) 
 		{
 			
@@ -310,7 +315,9 @@ public double testModel()
 
 		}
 		noCount = ((int)(lineCount*0.7)) - yesCount;
-		
+
+//---------------------------TEST THE REST OF THE DATA SET USING THE TRAIN DATA ---------------------------------------------------------------------------------------		
+
 		for(int i = (int)(lineCount*0.7);i<lineCount;i++)
 		{
 			
@@ -323,6 +330,7 @@ public double testModel()
 		
 		
 		System.out.println("\nCorrect :"+ success+"\nTotal :"+ testAmount);
+		
 	return ((success/testAmount) * 100);		
 
 	}
