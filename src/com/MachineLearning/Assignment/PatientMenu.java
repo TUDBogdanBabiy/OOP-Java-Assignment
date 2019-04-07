@@ -120,11 +120,12 @@ public class PatientMenu extends JFrame implements ActionListener {
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
 		} else if (e.getSource() == submit) {
-			Patient newPat = new Patient(nameInput.getText(), temp.getEditor().getItem().toString(),
-					aches.getEditor().getItem().toString(), sorethroat.getEditor().getItem().toString());
+			Patient newPat = new Patient(nameInput.getText(), (String) temp.getSelectedItem(),
+					 (String) aches.getSelectedItem(), (String) sorethroat.getSelectedItem());
 			//JOptionPane.showMessageDialog(this, "You are now saved as: " + newPat);
 			
-			JOptionPane.showMessageDialog(this, "You have a : " + newPat.checkPatient() * 100 + "%  Chance to have Tonsilitis");
+			//Rounds the result to the nearest whole number and displays to the user
+			JOptionPane.showMessageDialog(this, "You have a : " + Math.round(newPat.checkPatient() * 100) + "%  Chance to have Tonsilitis");
 			
 			
 		}
