@@ -1,6 +1,7 @@
 package com.MachineLearning.Assignment;
 
-public class Patient {
+public class Patient 
+{
 
 	// Attributes
 	private String pName;
@@ -10,27 +11,38 @@ public class Patient {
 	private String aches;
 	private String throat;
 
-	public Patient(String pName, String temp, String aches, String throat) {
+//************************************ CONSTRUCTOR *****************************************************
+	
+	public Patient(String pName, String temp, String aches, String throat)
+	{
 
 		currentNum++;
-		this.pName = pName;
-		this.temp = temp;
-		this.aches = aches;
+		this.pName  = pName;
+		this.temp   = temp;
+		this.aches  = aches;
 		this.throat = throat;
-		this.pID = currentNum;
+		this.pID    = currentNum;
 
 	}
+	
+//************************************ METHODS *****************************************************
+	
 
-	public double checkPatient() {
+	public double checkPatient()
+	{
 		Model m1 = new Model();
+		
 		return  m1.calcProbability(temp,aches,throat);
 	}
 
-	@Override
-	public String toString() {
+	
+	public String toString() 
+	{
 		return "\nPatient: " + pID + "\n" + "Name: " + pName + "\n" + "temp: " + temp + "\n" + "aches: " + aches + "\n"
 				+ "throat: " + throat;
 	}
+
+//************************************ GETTERS / SETTERS *****************************************************
 
 	public String getpName() {
 		return pName;

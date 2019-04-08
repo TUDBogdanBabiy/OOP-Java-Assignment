@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class DoctorMenu extends JFrame implements ActionListener {
+public class DoctorMenu extends JFrame implements ActionListener 
+{
 
 	// Variables
 
@@ -36,11 +37,16 @@ public class DoctorMenu extends JFrame implements ActionListener {
 	JPanel PanelS = new JPanel();
 	JPanel PanelC = new JPanel();
 
-	public DoctorMenu() {
+//************************************ CONSTRUCTOR *****************************************************
+	
+	public DoctorMenu()
+	{
 		super("Doctor Menu");
 
 		// sets the screen layout - in this case, border layout
 		setLayout(new BorderLayout());
+
+//------------------------INSTANTIATE VARIABLES------------------------------------------------------------------------------------------		
 
 		// create a label
 		fileLabel = new JLabel("Enter file name");
@@ -71,6 +77,8 @@ public class DoctorMenu extends JFrame implements ActionListener {
 
 		display = new JTextArea();
 		display.setPreferredSize(new Dimension(300, 300));
+		
+//------------------------ SET SCREEN SIZE + ADD ITEMS TO PANELS ------------------------------------------------------------------------------------------		
 
 		// set the location of the screen
 		setLocation(500, 100);
@@ -106,14 +114,19 @@ public class DoctorMenu extends JFrame implements ActionListener {
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+//************************************ EVENT HANDLING *****************************************************
 
-		if (e.getSource() == goHome) {
+	public void actionPerformed(ActionEvent e)
+	{
+
+		if (e.getSource() == goHome)
+		{
 
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
-		}else if (e.getSource() == addPatient) {
+			
+		}else if (e.getSource() == addPatient) 
+		{
 
 			Model m1 = new Model();
 			

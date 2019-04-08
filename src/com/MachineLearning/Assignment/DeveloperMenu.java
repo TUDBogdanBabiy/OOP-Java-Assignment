@@ -12,7 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class DeveloperMenu extends JFrame implements ActionListener {
+public class DeveloperMenu extends JFrame implements ActionListener 
+{
 
 	// Labels
 	private JLabel accuracy;
@@ -27,12 +28,17 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 	JPanel PanelS = new JPanel();
 	JPanel PanelC = new JPanel();
 
-	public DeveloperMenu() {
+//************************************ CONSTRUCTOR *****************************************************
+	
+	public DeveloperMenu() 
+	{
 
 		super("Developer Menu");
 
 		// sets the screen layout - in this case, border layout
 		setLayout(new BorderLayout());
+
+//------------------------INSTANTIATE VARIABLES------------------------------------------------------------------------------------------		
 
 		// create a label
 		accuracy = new JLabel("Click Button To Test Model Accuracy");
@@ -51,6 +57,8 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 		reset = new JButton("Reset");
 		reset.setPreferredSize(new Dimension(125, 40));
 		reset.addActionListener(this);
+
+//------------------------ SET SCREEN SIZE + ADD ITEMS TO PANELS ------------------------------------------------------------------------------------------		
 
 		// set the location of the screen
 		setLocation(500, 100);
@@ -82,21 +90,30 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+//************************************ EVENT HANDLING *****************************************************
 
-		if (e.getSource() == goHome) {
+	public void actionPerformed(ActionEvent e) 
+	{
+
+		if (e.getSource() == goHome)
+		{
 
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
-		}else if (e.getSource() == showAccuracy) {
+			
+		}else if (e.getSource() == showAccuracy)
+		{
 
 			Model m1 = new Model();
+			
 			JOptionPane.showMessageDialog(this, "Model Accuracy is at: "+Math.round(m1.testModel())+"%");
-		}else if (e.getSource() == reset) {
+			
+		}else if (e.getSource() == reset) 
+		{
 
 			Model m1 = new Model();
 			m1.reset();
+			
 			JOptionPane.showMessageDialog(this, "File Reset");
 		}
 

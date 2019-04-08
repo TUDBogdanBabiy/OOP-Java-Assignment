@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PatientMenu extends JFrame implements ActionListener {
+public class PatientMenu extends JFrame implements ActionListener
+{
 
 	// Variables
 	private String[] tempOptions = { "hot", "normal", "cool" };
@@ -44,12 +45,17 @@ public class PatientMenu extends JFrame implements ActionListener {
 	JPanel PanelS = new JPanel();
 	JPanel PanelC = new JPanel();
 
-	public PatientMenu() {
+//************************************ CONSTRUCTOR *****************************************************
+
+	public PatientMenu()
+	{
 
 		super("Patient Menu");
 
 		// sets the screen layout - in this case, border layout
 		setLayout(new BorderLayout());
+
+//------------------------INSTANTIATE VARIABLES------------------------------------------------------------------------------------------		
 
 		// create a label
 		nameLabel = new JLabel("Enter your name");
@@ -77,6 +83,8 @@ public class PatientMenu extends JFrame implements ActionListener {
 		temp = new JComboBox(tempOptions);
 		aches = new JComboBox(achesOptions);
 		sorethroat = new JComboBox(throatOptions);
+
+//------------------------ SET SCREEN SIZE + ADD ITEMS TO PANELS ------------------------------------------------------------------------------------------		
 
 		// set the location of the screen
 		setLocation(500, 100);
@@ -112,18 +120,24 @@ public class PatientMenu extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+//************************************ EVENT HANDLING *****************************************************
 
-		if (e.getSource() == goHome) {
+	public void actionPerformed(ActionEvent e)
+	{
+
+		if (e.getSource() == goHome) 
+		{
 
 			MainMenu m1 = new MainMenu("Main Menu");
 			this.dispose();
-		} else if (e.getSource() == submit) {
 			
+		} else if (e.getSource() == submit) 
+		{
+			
+			//Saves user input as a new patient
 			Patient newPat = new Patient(nameInput.getText(), (String) temp.getSelectedItem(),
 					 (String) aches.getSelectedItem(), (String) sorethroat.getSelectedItem());
-			//JOptionPane.showMessageDialog(this, "You are now saved as: " + newPat);
+			
 			
 			//Rounds the result to the nearest whole number and displays to the user
 			JOptionPane.showMessageDialog(this,newPat.getpName()+ "\nYou have a : " + Math.round(newPat.checkPatient() * 100) + "%  Chance to have Tonsilitis");
