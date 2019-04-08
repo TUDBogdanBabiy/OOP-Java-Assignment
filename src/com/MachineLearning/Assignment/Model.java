@@ -12,33 +12,35 @@ public class Model
 {
 	//Counters 
 	
-	int lineCount = 0;
-	int cols;
-	double valueYesCounter = 0;
-	double valueNoCounter = 0;
-	int probArrayCounter = 0;
+	private int lineCount = 0;
+	private int cols;
+	private double valueYesCounter = 0; //Used for self evaluation feature
+	private double valueNoCounter  = 0;
+	private int probArrayCounter   = 0;
 
 	//File related attributes
-	File patientData;
-	File extern;
-	File default_data;
-	Scanner fileScanner;
-	FileWriter fr;
-	static String[] lineValues;    // Stores the split line values 
-	static String[][] fileValues; // Stores the file values
+	private File patientData;
+	private File extern;
+	private File default_data;
 	
-	String[][]trainData;
+	private Scanner fileScanner;
+	private FileWriter fr;
+	
+	//Arrays 
+	private String[] lineValues;    // Stores the split line values 
+	private String[][] fileValues;  // Stores the file values
+	private String[][]trainData;	// Holds 70% of fileValues
 
-	double[] yesProbabilities;
-	double[]noProbabilities;
+	private double[] yesProbabilities;
+	private double[]noProbabilities;
 
 	// Yes | No counters
-	double tonYes = 0;
-	double tonNo  = 0;
+	private double tonYes = 0;
+	private double tonNo  = 0;
 
 	// Final probability decimal values
-	double pTons;
-	double pNoTons;
+	private double pTons;
+	private double pNoTons;
 	
 //**************************************** THE CONSTRUCTOR **************************************************
 	public Model() 
@@ -394,17 +396,23 @@ private void loadTrainData()
 
 public void reset() 
 {
-		
+		// Copy of the starting data set, will be used to reset the main patient file
 		default_data = new File("Patient_Files\\TrainDataDefault.csv");
+		
 		try
 		{
 			fileScanner = new Scanner(default_data);
 			fr = new FileWriter(patientData);
 			
+			//Clears the patient file and copies the contents of the default file to it
+			
 			while(fileScanner.hasNext())
 			{
 				
 				fr.write(fileScanner.nextLine());
+				
+				// Will stop making new lines after it reaches the end of the default file
+				// This avoids printing a blank line at the end of the file
 				
 				if(!fileScanner.hasNext())
 				{
@@ -429,6 +437,162 @@ public void reset()
 	
 		} // End try catch	
 }
+
+//************************************ GETTERS / SETTERS  *****************************************************
+
+public int getLineCount() {
+	return lineCount;
+}
+
+public void setLineCount(int lineCount) {
+	this.lineCount = lineCount;
+}
+
+public int getCols() {
+	return cols;
+}
+
+public void setCols(int cols) {
+	this.cols = cols;
+}
+
+public double getValueYesCounter() {
+	return valueYesCounter;
+}
+
+public void setValueYesCounter(double valueYesCounter) {
+	this.valueYesCounter = valueYesCounter;
+}
+
+public double getValueNoCounter() {
+	return valueNoCounter;
+}
+
+public void setValueNoCounter(double valueNoCounter) {
+	this.valueNoCounter = valueNoCounter;
+}
+
+public int getProbArrayCounter() {
+	return probArrayCounter;
+}
+
+public void setProbArrayCounter(int probArrayCounter) {
+	this.probArrayCounter = probArrayCounter;
+}
+
+public File getPatientData() {
+	return patientData;
+}
+
+public void setPatientData(File patientData) {
+	this.patientData = patientData;
+}
+
+public File getExtern() {
+	return extern;
+}
+
+public void setExtern(File extern) {
+	this.extern = extern;
+}
+
+public File getDefault_data() {
+	return default_data;
+}
+
+public void setDefault_data(File default_data) {
+	this.default_data = default_data;
+}
+
+public Scanner getFileScanner() {
+	return fileScanner;
+}
+
+public void setFileScanner(Scanner fileScanner) {
+	this.fileScanner = fileScanner;
+}
+
+public FileWriter getFr() {
+	return fr;
+}
+
+public void setFr(FileWriter fr) {
+	this.fr = fr;
+}
+
+public String[] getLineValues() {
+	return lineValues;
+}
+
+public void setLineValues(String[] lineValues) {
+	this.lineValues = lineValues;
+}
+
+public String[][] getFileValues() {
+	return fileValues;
+}
+
+public void setFileValues(String[][] fileValues) {
+	this.fileValues = fileValues;
+}
+
+public String[][] getTrainData() {
+	return trainData;
+}
+
+public void setTrainData(String[][] trainData) {
+	this.trainData = trainData;
+}
+
+public double[] getYesProbabilities() {
+	return yesProbabilities;
+}
+
+public void setYesProbabilities(double[] yesProbabilities) {
+	this.yesProbabilities = yesProbabilities;
+}
+
+public double[] getNoProbabilities() {
+	return noProbabilities;
+}
+
+public void setNoProbabilities(double[] noProbabilities) {
+	this.noProbabilities = noProbabilities;
+}
+
+public double getTonYes() {
+	return tonYes;
+}
+
+public void setTonYes(double tonYes) {
+	this.tonYes = tonYes;
+}
+
+public double getTonNo() {
+	return tonNo;
+}
+
+public void setTonNo(double tonNo) {
+	this.tonNo = tonNo;
+}
+
+public double getpTons() {
+	return pTons;
+}
+
+public void setpTons(double pTons) {
+	this.pTons = pTons;
+}
+
+public double getpNoTons() {
+	return pNoTons;
+}
+
+public void setpNoTons(double pNoTons) {
+	this.pNoTons = pNoTons;
+}
+
+
 
 //************************************ END OF CLASS MODEL *****************************************************
 }

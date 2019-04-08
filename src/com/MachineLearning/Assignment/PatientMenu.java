@@ -44,9 +44,9 @@ public class PatientMenu extends JFrame implements ActionListener {
 	JPanel PanelS = new JPanel();
 	JPanel PanelC = new JPanel();
 
-	public PatientMenu(String title) {
+	public PatientMenu() {
 
-		super(title);
+		super("Patient Menu");
 
 		// sets the screen layout - in this case, border layout
 		setLayout(new BorderLayout());
