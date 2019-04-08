@@ -126,7 +126,7 @@ public class PatientMenu extends JFrame implements ActionListener {
 			//JOptionPane.showMessageDialog(this, "You are now saved as: " + newPat);
 			
 			//Rounds the result to the nearest whole number and displays to the user
-			JOptionPane.showMessageDialog(this, "You have a : " + Math.round(newPat.checkPatient() * 100) + "%  Chance to have Tonsilitis");
+			JOptionPane.showMessageDialog(this,newPat.getpName()+ "\nYou have a : " + Math.round(newPat.checkPatient() * 100) + "%  Chance to have Tonsilitis");
 			
 			
 		}
