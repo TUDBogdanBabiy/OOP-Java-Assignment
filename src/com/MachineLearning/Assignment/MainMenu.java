@@ -8,14 +8,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class MainMenu extends JFrame implements ActionListener 
 {
-
+	
+	private JLabel user;
+	private JLabel pass;
+	
 	private JButton patient;
-	private JButton doctor;
-	private JButton developer;
+	private JButton login;
+	
+	private JTextField userName;
+	private JTextField passWord;
+	
+	
 
 	JPanel PanelN = new JPanel();
 	JPanel PanelC = new JPanel();
@@ -34,16 +44,27 @@ public class MainMenu extends JFrame implements ActionListener
 //------------------------INSTANTIATE VARIABLES------------------------------------------------------------------------------------------		
 
 		patient = new JButton("I'm a patient");
-		patient.setPreferredSize(new Dimension(1000, 80));
+		patient.setPreferredSize(new Dimension(125, 40));
 		patient.addActionListener(this);
+		
+		login = new JButton("Login");
+		login.setPreferredSize(new Dimension(125, 40));
+		login.addActionListener(this);
+		
+		userName = new JTextField();
+		userName.setPreferredSize(new Dimension(150, 30));
+		userName.addActionListener(this);
+		userName.setToolTipText("Enter Username");
+		
+		passWord = new JTextField();
+		passWord.setPreferredSize(new Dimension(150, 30));
+		passWord.addActionListener(this);
+		passWord.setToolTipText("Enter Password");
+		
+		user = new JLabel("Username");
+		pass = new JLabel("Password");
 
-		doctor = new JButton("I'm a doctor");
-		doctor.setPreferredSize(new Dimension(1000, 80));
-		doctor.addActionListener(this);
-
-		developer = new JButton("I'm a developer");
-		developer.setPreferredSize(new Dimension(1000, 80));
-		developer.addActionListener(this);
+		
 		
 //------------------------ SET SCREEN SIZE + ADD ITEMS TO PANELS ------------------------------------------------------------------------------------------		
 		
@@ -52,18 +73,26 @@ public class MainMenu extends JFrame implements ActionListener
 		setLocation(500, 100);
 
 		// Define the size of the frame
-		setSize(280, 350);
-		this.setMinimumSize(new Dimension(280, 350));
+		setSize(280, 250);
+		this.setMinimumSize(new Dimension(270, 250));
 
 		
 		// add the panel to the screen ,set background colour and panel dimensions
 
 		add(PanelC, BorderLayout.CENTER);
-		PanelC.setBackground(Color.gray);
+		PanelC.setBackground(Color.LIGHT_GRAY);
+		
+		add(PanelS, BorderLayout.SOUTH);
+		PanelS.setBackground(Color.gray);
+		
 
-		PanelC.add(patient);
-		PanelC.add(doctor);
-		PanelC.add(developer);
+		PanelC.add(user);
+		PanelC.add(userName);
+		PanelC.add(pass);
+		PanelC.add(passWord);
+		PanelS.add(login);
+		PanelS.add(patient);
+		
 
 		setVisible(true);
 	}
@@ -81,18 +110,29 @@ public class MainMenu extends JFrame implements ActionListener
 
 			PatientMenu pm = new PatientMenu();
 			this.dispose();
-		} else if (e.getSource() == doctor)
-		{
-
-			DoctorMenu dm = new DoctorMenu();
-			this.dispose();
 			
-		} else if (e.getSource() == developer) 
+		} else if (e.getSource() == login ||e.getSource() == userName ||e.getSource() == passWord)
 		{
+			
+			if(userName.getText().equals("doctor")&&passWord.getText().equals("doc"))
+			{
+				DoctorMenu dm = new DoctorMenu();
+				this.dispose();
+			}
+			else if(userName.getText().equals("developer")&&passWord.getText().equals("dev"))
+			{
+				DeveloperMenu devm = new DeveloperMenu();
+				this.dispose();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Incorrect Username or Password");
+				userName.setText("");
+				passWord.setText("");
+			}
+			
+		}	
 
-			DeveloperMenu devm = new DeveloperMenu();
-			this.dispose();
-		}
 
 	}
 
