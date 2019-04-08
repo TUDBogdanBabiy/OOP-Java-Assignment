@@ -390,6 +390,8 @@ private void loadTrainData()
 	
 }
 
+//************************************ RESET PATIENT FILE  *****************************************************
+
 public void reset() 
 {
 		
