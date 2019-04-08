@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -18,7 +19,7 @@ public class DoctorMenu extends JFrame implements ActionListener
 {
 
 	// Variables
-
+	String patients;
 	// Labels
 	private JLabel fileLabel;
 
@@ -31,6 +32,7 @@ public class DoctorMenu extends JFrame implements ActionListener
 	// Text Fields
 	private JTextField fileName;
 	private JTextArea display;
+	private JScrollPane scroll;           /*"JScrollPane", source: stackoverflow.com*/
 
 	// create a section of screen (panel) that will hold some GUI components
 	JPanel PanelN = new JPanel();
@@ -61,7 +63,7 @@ public class DoctorMenu extends JFrame implements ActionListener
 		showAll.setPreferredSize(new Dimension(250, 40));
 		showAll.addActionListener(this);
 
-		deleteAll = new JButton("Clear All Patients");
+		deleteAll = new JButton("Clear Screen");
 		deleteAll.setPreferredSize(new Dimension(250, 40));
 		deleteAll.addActionListener(this);
 
@@ -76,7 +78,8 @@ public class DoctorMenu extends JFrame implements ActionListener
 		fileName.setToolTipText("Patient file name");
 
 		display = new JTextArea();
-		display.setPreferredSize(new Dimension(300, 300));
+		scroll = new JScrollPane(display);
+		scroll.setPreferredSize(new Dimension(300, 320));
 		
 //------------------------ SET SCREEN SIZE + ADD ITEMS TO PANELS ------------------------------------------------------------------------------------------		
 
@@ -84,8 +87,8 @@ public class DoctorMenu extends JFrame implements ActionListener
 		setLocation(500, 100);
 
 		// Define the size of the frame
-		setSize(280, 350);
-		this.setMinimumSize(new Dimension(280, 350));
+		setSize(310, 550);
+		this.setMinimumSize(new Dimension(320, 560));
 
 		// add everything to the panels
 		// Remember that once you add to the panel you cant resize
@@ -93,7 +96,7 @@ public class DoctorMenu extends JFrame implements ActionListener
 		PanelN.add(fileName);
 		PanelC.add(showAll);
 		PanelC.add(deleteAll);
-		PanelC.add(display);
+		PanelC.add(scroll);
 		PanelS.add(addPatient);
 		PanelS.add(goHome);
 
@@ -132,6 +135,32 @@ public class DoctorMenu extends JFrame implements ActionListener
 			
 			m1.appendFile(fileName.getText());
 			JOptionPane.showMessageDialog(this, "Patients added!");
+		}
+		else if(e.getSource() == showAll)
+		{
+			Model m2 = new Model();
+			
+			
+			patients = "";
+			
+			for(int i = 0;i< m2.getLineCount() ;i++)
+			{
+				patients = patients +"	Patient: ";
+				
+				for(int j = 0; j<m2.getCols(); j++)
+				{
+					patients = patients +m2.getFileValues()[i][j]+" | ";
+				}
+				
+				patients = patients +"\n";
+			}
+			
+			display.setText("The list of patients are:\n"+patients);
+		}
+		else if(e.getSource() == deleteAll) 
+		{
+			
+			display.setText("");
 		}
 
 	}
