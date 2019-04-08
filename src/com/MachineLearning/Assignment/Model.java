@@ -57,7 +57,7 @@ public class Model
 			{
 				// Splits the line into separate values and stores in the array lineValues
 				String line = fileScanner.nextLine();
-				lineValues = line.split(",");
+				lineValues = line.split(",");																 /* "line.split()", source: geekforgeeks.org */
 				lineCount++;
 			}
 			
@@ -304,7 +304,7 @@ public void appendFile(String filename)
 		while(fileScanner.hasNext())
 		{
 			patientID++;
-			fr.write(System.lineSeparator()+patientID+","+fileScanner.nextLine());
+			fr.write(System.lineSeparator()+patientID+","+fileScanner.nextLine()); 					/* "System.lineSeparator()", source: geekforgeeks.org */
 		}
 		
 		fr.close();

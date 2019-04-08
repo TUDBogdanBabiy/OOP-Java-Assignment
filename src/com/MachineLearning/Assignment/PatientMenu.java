@@ -81,7 +81,7 @@ public class PatientMenu extends JFrame implements ActionListener
 
 		// Instantiate combo boxes
 		temp = new JComboBox(tempOptions);
-		aches = new JComboBox(achesOptions);
+		aches = new JComboBox(achesOptions);					/* "JComboBox()", source: docs.oracle.com */
 		sorethroat = new JComboBox(throatOptions);
 
 //------------------------ SET SCREEN SIZE + ADD ITEMS TO PANELS ------------------------------------------------------------------------------------------		
@@ -140,7 +140,7 @@ public class PatientMenu extends JFrame implements ActionListener
 			
 			
 			//Rounds the result to the nearest whole number and displays to the user
-			JOptionPane.showMessageDialog(this,newPat.getpName()+ "\nYou have a : " + Math.round(newPat.checkPatient() * 100) + "%  Chance to have Tonsilitis");
+			JOptionPane.showMessageDialog(this,newPat.getpName()+ "\nYou have a : " + Math.round(newPat.checkPatient() * 100) + "%  Chance to have Tonsilitis"); /* "Math.round()", source: stackoverflow.com */
 			
 			
 		}
