@@ -133,8 +133,19 @@ public class DoctorMenu extends JFrame implements ActionListener
 
 			Model m1 = new Model();
 			
-			m1.appendFile(fileName.getText());
-			JOptionPane.showMessageDialog(this, "Patients added!");
+			if(m1.appendFile(fileName.getText()))
+			{
+				JOptionPane.showMessageDialog(this, "Patients successfully added!");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Cannot Locate File! \n"
+						+ "Make sure that:\n"
+						+ "- File is in the correct Patient Files folder\n"
+						+ "- File is named correctly\n"
+						+ "- File exists");
+			}
+			
 		}
 		else if(e.getSource() == showAll)
 		{

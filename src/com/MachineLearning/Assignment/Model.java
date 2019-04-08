@@ -291,7 +291,7 @@ public class Model
 	}
 //************************************ APPEND NEW FILE *****************************************************
 	
-public void appendFile(String filename)
+public boolean appendFile(String filename)
 	{
 	int patientID = lineCount;
 	extern = new File("Patient_Files\\"+filename+".csv");
@@ -319,8 +319,10 @@ public void appendFile(String filename)
 	catch (IOException e) 
 	{
 		System.out.println("\nCannot find file");
+		return false ;
 
 	} // End try catch
+	return true;
 	
 	
 	
