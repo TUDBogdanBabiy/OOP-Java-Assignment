@@ -117,7 +117,7 @@ public class DoctorMenu extends JFrame implements ActionListener {
 
 			Model m1 = new Model();
 			
-			m1.appendFile("NewPatients");
+			m1.appendFile(fileName.getText());
 			JOptionPane.showMessageDialog(this, "Patients added!");
 		}
 

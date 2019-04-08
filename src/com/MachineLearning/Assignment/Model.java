@@ -291,7 +291,7 @@ public class Model
 public void appendFile(String filename)
 	{
 	int patientID = lineCount;
-	extern = new File("Patient_Files\\"+filename);
+	extern = new File("Patient_Files\\"+filename+".csv");
 	
 	try
 	{
@@ -301,7 +301,7 @@ public void appendFile(String filename)
 		while(fileScanner.hasNext())
 		{
 			patientID++;
-			fr.write("\n"+patientID+fileScanner.nextLine());
+			fr.write(System.lineSeparator()+patientID+","+fileScanner.nextLine());
 		}
 		
 		fr.close();
