@@ -54,7 +54,7 @@ public class DeveloperMenu extends JFrame implements ActionListener
 		goHome.setPreferredSize(new Dimension(125, 40));
 		goHome.addActionListener(this);
 		
-		reset = new JButton("Reset");
+		reset = new JButton("Reset File");
 		reset.setPreferredSize(new Dimension(125, 40));
 		reset.addActionListener(this);
 
