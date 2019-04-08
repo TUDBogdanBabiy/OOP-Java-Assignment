@@ -1,6 +1,7 @@
 package com.MachineLearning.Assignment;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,9 @@ public class Model
 
 	//File related attributes
 	File patientData;
-	Scanner myReader;
+	File extern;
+	Scanner fileScanner;
+	FileWriter fr;
 	static String[] lineValues;    // Stores the split line values 
 	static String[][] fileValues; // Stores the file values
 	
@@ -43,14 +46,14 @@ public class Model
 		
 		try 
 		{
-			myReader = new Scanner(patientData);
+			fileScanner = new Scanner(patientData);
 
 //-----------------------SCAN FILE FOR LINE AND COLUMN COUNT-------------------------------------------------------------------------------------------		
 
-			while (myReader.hasNextLine()) 
+			while (fileScanner.hasNextLine()) 
 			{
 				// Splits the line into separate values and stores in the array lineValues
-				String line = myReader.nextLine();
+				String line = fileScanner.nextLine();
 				lineValues = line.split(",");
 				lineCount++;
 			}
@@ -58,7 +61,7 @@ public class Model
 			cols = lineValues.length;
 
 			// Reopen the scanner from the beginning
-			myReader = new Scanner(patientData);
+			fileScanner = new Scanner(patientData);
 
 			// Initialises 2D array size here to make them dynamic
 			
@@ -70,9 +73,9 @@ public class Model
 			
 //------------------------COPY FILE INTO 2D ARRAY------------------------------------------------------------------------------------------		
 			
-			while (myReader.hasNextLine())
+			while (fileScanner.hasNextLine())
 			{
-				String line = myReader.nextLine();
+				String line = fileScanner.nextLine();
 
 				// Split the line and save into array
 				lineValues = line.split(",");
@@ -93,6 +96,8 @@ public class Model
 			}
 
 			tonNo =  lineCount - tonYes;
+			
+			fileScanner.close();
 
 		} 
 		catch (IOException e) 
@@ -285,7 +290,37 @@ public class Model
 	
 public void appendFile(String filename)
 	{
+	int patientID = lineCount;
+	extern = new File("Patient_Files\\"+filename);
+	
+	try
+	{
+		fileScanner = new Scanner(extern);
+		fr = new FileWriter(patientData,true);
+		
+		while(fileScanner.hasNext())
+		{
+			patientID++;
+			fr.write("\n"+patientID+fileScanner.nextLine());
+		}
+		
+		fr.close();
+		
+		fileScanner = new Scanner(patientData);
+		while(fileScanner.hasNext())
+		{
+			System.out.println(fileScanner.nextLine());
+		}
+		fileScanner.close();
+	}
+	catch (IOException e) 
+	{
+		System.out.println("\nCannot find file");
 
+	} // End try catch
+	
+	
+	
 	}
 
 //************************************ TEST MODEL ACCURACY *****************************************************
