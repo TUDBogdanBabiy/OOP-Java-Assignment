@@ -20,6 +20,7 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 	// Buttons
 	private JButton showAccuracy;
 	private JButton goHome;
+	private JButton reset;
 
 	// create a section of screen/7 (panel) that will hold some GUI components
 	JPanel PanelN = new JPanel();
@@ -46,6 +47,10 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 		goHome = new JButton("Home");
 		goHome.setPreferredSize(new Dimension(125, 40));
 		goHome.addActionListener(this);
+		
+		reset = new JButton("Reset");
+		reset.setPreferredSize(new Dimension(125, 40));
+		reset.addActionListener(this);
 
 		// set the location of the screen
 		setLocation(500, 100);
@@ -57,7 +62,8 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 		// add everything to the panels
 		// Remember that once you add to the panel you cant resize
 		PanelN.add(accuracy);
-		PanelS.add(showAccuracy);
+		PanelC.add(showAccuracy);
+		PanelC.add(reset);
 		PanelS.add(goHome);
 
 		// add the panel to the screen ,set background colour and panel dimensions
@@ -87,6 +93,11 @@ public class DeveloperMenu extends JFrame implements ActionListener {
 
 			Model m1 = new Model();
 			JOptionPane.showMessageDialog(this, "Model Accuracy is at: "+Math.round(m1.testModel())+"%");
+		}else if (e.getSource() == reset) {
+
+			Model m1 = new Model();
+			m1.reset();
+			JOptionPane.showMessageDialog(this, "File Reset");
 		}
 
 	}

@@ -1,3 +1,6 @@
 hot,yes,no,no
 cool,no,no,no
 normal,yes,yes,yes
+normal,no,yes,no
+cool,yes,no,yes
+hot,yes,no,yes

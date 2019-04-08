@@ -35,10 +35,10 @@ public class PatientMenu extends JFrame implements ActionListener {
 	private JTextField nameInput;
 
 	// Combo Boxes
-	private JComboBox temp = new JComboBox(tempOptions);
-	private JComboBox aches = new JComboBox(achesOptions);
-	private JComboBox sorethroat = new JComboBox(throatOptions);
-
+	private JComboBox temp ;
+	private JComboBox aches;
+	private JComboBox sorethroat;
+	
 	// create a section of screen (panel) that will hold some GUI components
 	JPanel PanelN = new JPanel();
 	JPanel PanelS = new JPanel();

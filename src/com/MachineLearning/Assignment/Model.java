@@ -21,6 +21,7 @@ public class Model
 	//File related attributes
 	File patientData;
 	File extern;
+	File default_data;
 	Scanner fileScanner;
 	FileWriter fr;
 	static String[] lineValues;    // Stores the split line values 
@@ -388,5 +389,44 @@ private void loadTrainData()
 	
 	
 }
+
+public void reset() 
+{
+		
+		default_data = new File("Patient_Files\\TrainDataDefault.csv");
+		try
+		{
+			fileScanner = new Scanner(default_data);
+			fr = new FileWriter(patientData);
+			
+			while(fileScanner.hasNext())
+			{
+				
+				fr.write(fileScanner.nextLine());
+				
+				if(!fileScanner.hasNext())
+				{
+					
+				}
+				else
+				{
+					fr.write(System.lineSeparator());
+				}
+				
+			
+			}
+			
+			
+			
+			fr.close();
+			
+		}
+		catch (IOException e) 
+		{
+			System.out.println("\nCannot find file");
+	
+		} // End try catch	
+}
+
 //************************************ END OF CLASS MODEL *****************************************************
 }
