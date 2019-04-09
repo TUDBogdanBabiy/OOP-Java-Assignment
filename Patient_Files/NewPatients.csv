@@ -1,6 +1,18 @@
-hot,yes,no,no
+hot,yes,no,yes
+hot,yes, yes,no
+hot,no,no,no
+normal,no,yes,yes
+cool,yes,yes,no
+cool,yes,no,no
+cool,no,no,yes
+normal,no,yes,yes
 cool,no,no,no
 normal,yes,yes,yes
-normal,no,yes,no
-cool,yes,no,yes
-hot,yes,no,yes
+normal,yes,yes,yes
+normal,no,yes,yes
+hot,yes,no,no
+normal,yes,no,no
+hot,yes,yes,no
+normal,no,yes,yes
+cool,yes,no,no
+normal,yes,yes,yes
