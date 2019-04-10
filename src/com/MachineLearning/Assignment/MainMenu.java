@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class MainMenu extends JFrame implements ActionListener 
@@ -23,7 +24,7 @@ public class MainMenu extends JFrame implements ActionListener
 	private JButton login;
 	
 	private JTextField userName;
-	private JTextField passWord;
+	private JPasswordField passWord;
 	
 	
 
@@ -56,7 +57,7 @@ public class MainMenu extends JFrame implements ActionListener
 		userName.addActionListener(this);
 		userName.setToolTipText("Enter Username");
 		
-		passWord = new JTextField();
+		passWord = new JPasswordField();
 		passWord.setPreferredSize(new Dimension(150, 30));
 		passWord.addActionListener(this);
 		passWord.setToolTipText("Enter Password");
