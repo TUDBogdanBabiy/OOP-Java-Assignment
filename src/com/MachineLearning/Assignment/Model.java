@@ -201,6 +201,8 @@ public class Model
 				if (trainData[i][1].equals(temp) && trainData[i][4].equals("yes")) 
 				{
 					valueYesCounter++;
+					
+					
 				}
 			}
 			
@@ -212,6 +214,7 @@ public class Model
 					valueNoCounter++;
 				}
 			}
+			
 			
 			//Add probabilities to array
 			yesProbabilities[probArrayCounter] = ( (valueYesCounter / tonYes));
@@ -273,6 +276,7 @@ public class Model
 				if (trainData[i][3].equals(throat) && trainData[i][4].equals("no"))
 				{
 					valueNoCounter++;
+					
 				}
 
 			}
