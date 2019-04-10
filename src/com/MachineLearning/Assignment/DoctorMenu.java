@@ -20,9 +20,7 @@ public class DoctorMenu extends JFrame implements ActionListener
 
 	// Variables
 	String patients;
-	// Labels
-	private JLabel fileLabel;
-
+	
 	// Buttons
 	private JButton addPatient;
 	private JButton showAll;
@@ -30,7 +28,6 @@ public class DoctorMenu extends JFrame implements ActionListener
 	private JButton goHome;
 
 	// Text Fields
-	private JTextField fileName;
 	private JTextArea display;
 	private JScrollPane scroll;           /*"JScrollPane", source: stackoverflow.com*/
 
@@ -50,8 +47,6 @@ public class DoctorMenu extends JFrame implements ActionListener
 
 //------------------------INSTANTIATE VARIABLES------------------------------------------------------------------------------------------		
 
-		// create a label
-		fileLabel = new JLabel("Enter file name");
 
 		// Instantiate new buttons
 
@@ -71,12 +66,6 @@ public class DoctorMenu extends JFrame implements ActionListener
 		goHome.setPreferredSize(new Dimension(125, 40));
 		goHome.addActionListener(this);
 
-		// Instantiate text fields
-		fileName = new JTextField();
-		fileName.setPreferredSize(new Dimension(120, 30));
-		fileName.addActionListener(this);
-		fileName.setToolTipText("Patient file name");
-
 		display = new JTextArea();
 		scroll = new JScrollPane(display);
 		scroll.setPreferredSize(new Dimension(300, 320));
@@ -92,8 +81,6 @@ public class DoctorMenu extends JFrame implements ActionListener
 
 		// add everything to the panels
 		// Remember that once you add to the panel you cant resize
-		PanelN.add(fileLabel);
-		PanelN.add(fileName);
 		PanelC.add(showAll);
 		PanelC.add(deleteAll);
 		PanelC.add(scroll);
@@ -133,18 +120,11 @@ public class DoctorMenu extends JFrame implements ActionListener
 
 			Model m1 = new Model();
 			
-			if(m1.appendFile(fileName.getText()))
+			if(m1.appendFile())
 			{
 				JOptionPane.showMessageDialog(this, "Patients successfully added!");
 			}
-			else
-			{
-				JOptionPane.showMessageDialog(this, "Cannot Locate File! \n"
-						+ "Make sure that:\n"
-						+ "- File is in the correct Patient Files folder\n"
-						+ "- File is named correctly\n"
-						+ "- File exists");
-			}
+			
 			
 		}
 		else if(e.getSource() == showAll)
