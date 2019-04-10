@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 public class Model
 {
 	//Counters 
@@ -295,10 +298,27 @@ public class Model
 	}
 //************************************ APPEND NEW FILE *****************************************************
 	
-public boolean appendFile(String filename)
+public boolean appendFile()
 	{
 	int patientID = lineCount;
-	extern = new File("Patient_Files\\"+filename+".csv");
+	JFileChooser chooser = new JFileChooser();
+	
+	chooser.setCurrentDirectory(new File("C:\\Users\\lemon\\Documents\\GitHub\\OOP-Java-Assignment\\Patient_Files"));
+
+	FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		    "Only csv", "csv");
+		chooser.setFileFilter(filter);
+		
+		int returnVal = chooser.showOpenDialog(null);
+		
+	
+		if(returnVal == JFileChooser.APPROVE_OPTION)
+		{
+		   System.out.println("You chose to open this file: " +
+		        chooser.getSelectedFile().getPath());
+		}
+
+	extern = new File(chooser.getSelectedFile().getAbsolutePath());
 	
 	try
 	{
