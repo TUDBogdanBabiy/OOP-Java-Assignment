@@ -151,6 +151,7 @@ public class DoctorMenu extends JFrame implements ActionListener
 			}
 			
 			display.setText("The list of patients are:\n"+patients);
+			display.setEditable(false);
 		}
 		else if(e.getSource() == deleteAll) 
 		{
