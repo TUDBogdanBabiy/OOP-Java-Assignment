@@ -314,8 +314,10 @@ public boolean appendFile()
 	
 		if(returnVal == JFileChooser.APPROVE_OPTION)
 		{
-		   System.out.println("You chose to open this file: " +
-		        chooser.getSelectedFile().getPath());
+		   if(chooser.getSelectedFile().getPath().equals("C:\\Users\\lemon\\Documents\\GitHub\\OOP-Java-Assignment\\Patient_Files\\TrainDataDefault.csv")|| chooser.getSelectedFile().getPath().equals("C:\\Users\\lemon\\Documents\\GitHub\\OOP-Java-Assignment\\Patient_Files\\TrainData.csv"))
+		   {
+			   return false;
+		   }
 		}
 
 	extern = new File(chooser.getSelectedFile().getAbsolutePath());

@@ -124,6 +124,10 @@ public class DoctorMenu extends JFrame implements ActionListener
 			{
 				JOptionPane.showMessageDialog(this, "Patients successfully added!");
 			}
+			else
+			{
+				JOptionPane.showMessageDialog(this, "Cannot open that file!");
+			}
 			
 			
 		}
