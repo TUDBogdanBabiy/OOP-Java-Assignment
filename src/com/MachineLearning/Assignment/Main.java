@@ -15,6 +15,9 @@ public class Main
 
 	public static void main(String[] args) 
 	{
+		//Reset file
+		Model model1 = new Model();
+		model1.reset();
 		//Instantiates the main menu
 		MainMenu m1 = new MainMenu("Main Menu");
 		
