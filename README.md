@@ -4,9 +4,9 @@ Author: Bogdan Babiy
 
 ID: C17355926
 
-Github:
+Github: https://github.com/TUDBogdanBabiy/OOP-Java-Assignment  (Will go public after upload)
 
-Youtube:
+Youtube: https://youtu.be/2bwXBnUmpFM
 
 ------------------------------------- INTRO ---------------------------------------------------------------
 
